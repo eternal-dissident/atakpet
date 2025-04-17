@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fadeScrollbars="false"
+    android:layout_marginLeft="3dp"
+    android:layout_marginRight="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send your Photos/Videos and Other Files Safely and Securely"
+            android:textSize="18sp"
+            android:padding="16dp"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Import Files and Create Mission Packages "
+            android:textSize="14sp"
+            android:padding="16dp"
+
+            />
+
+        <Button
+            android:id="@+id/upload_photos_videos_button"
+            style="@style/darkButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Upload Your Photos and Videos" />
+
+        <Button
+            android:layout_width="match_parent"
+            style="@style/darkButton"
+            android:text="Take a Photo or Video"
+            android:layout_height="48dp"
+            android:id="@+id/take_photo_video_button"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="Create Mission Package"
+            android:id="@+id/create_mission_packages"
+            android:visibility="visible"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Watch Directories"
+            android:textSize="14sp"
+            android:padding="16dp"
+
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Watch Directory"
+            style="@style/darkButton"
+            android:id="@+id/dialog_testing_button"
+            android:visibility="gone"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="Watch Directory 2"
+            android:id="@+id/select_option_button"
+            android:visibility="gone"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="Camera Watch Directory"
+            android:id="@+id/view_files_test"
+            android:visibility="visible"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="Data Packages Watch Directory"
+            android:id="@+id/view_files_dp_test"
+            android:visibility="visible"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="Configure Your Own Watch Directory"
+            android:id="@+id/view_files_configure_test"
+            android:visibility="visible"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select JPG File Transfer Buttons"
+            android:textSize="14sp"
+            android:padding="16dp"
+
+            />
+        <Button
+            android:id="@+id/file_picker_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Select JPG File"
+            style="@style/darkButton" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="View Selected JPG"
+            android:id="@+id/selected_pic_button"
+
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="Hash of Selected JPG"
+            android:id="@+id/Hashed_Value_JPG"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="Send JPG File Securely"
+            android:id="@+id/tak_server_send"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Mission Packages File Transfer Buttons"
+            android:textSize="14sp"
+            android:padding="16dp" />
+
+        <Button
+            android:id="@+id/file_msv_picker_button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Select MSV File"
+            style="@style/darkButton" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="View Selected Mission Package"
+            android:id="@+id/selected_msv_button"
+
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="Hash of Selected Mission Package"
+            android:id="@+id/Hashed_Value_MSV"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="Send Mission Package Securely"
+            android:id="@+id/securly_send_file_msv"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="Testing BETA - Both Send"
+            android:id="@+id/testing_send_button"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Button Testing Implementation Features"
+            android:textSize="14sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="PET Sending BETA"
+            android:id="@+id/PET_send_test"
+            android:visibility="visible"
+            />
+
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="PET View BETA - Recieved Blockchain Hashes"
+            android:id="@+id/view_recieved_files"
+            android:visibility="visible"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="Watch Directory"
+            android:id="@+id/watch_directory_button"
+            android:visibility="invisible"
+            />
+
+
+    </LinearLayout>
+</ScrollView>

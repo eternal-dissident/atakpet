@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/popup_background">
+
+    <EditText
+        android:id="@+id/path_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter directory path"
+        android:inputType="text"
+        android:paddingBottom="16dp" />
+
+    <Button
+        android:id="@+id/load_directory_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Load Directory"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/colorAccent"
+        android:padding="8dp"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingBottom="16dp" />
+
+    <ListView
+        android:id="@+id/dynamic_files_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

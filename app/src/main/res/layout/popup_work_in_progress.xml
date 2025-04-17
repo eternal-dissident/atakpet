@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/popup_background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to IS/DCIM/Camera"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingBottom="16dp" />
+
+    <Button
+        android:id="@+id/close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Camera Directory"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:padding="8dp"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to IS/ATAK/Tools/datapackage"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingTop="24dp"
+        android:paddingBottom="16dp" />
+
+    <Button
+        android:id="@+id/tak_gallery_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Data Package Directory"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:padding="8dp"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to TAK Videosnaps Directory"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingTop="24dp"
+        android:paddingBottom="16dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/tak_videosnaps_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="TAK Videosnaps (Beta)"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:padding="8dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to Other Files"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingTop="24dp"
+        android:paddingBottom="16dp" />
+
+    <Button
+        android:id="@+id/tak_other_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Other Files"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:padding="8dp"
+        android:layout_marginTop="16dp" />
+</LinearLayout>

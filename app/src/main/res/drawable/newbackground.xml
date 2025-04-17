@@ -1,0 +1,7 @@
+<!-- res/drawable/popup_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#B5B0A3"/> <!-- Background color -->
+    <corners android:radius="8dp"/> <!-- Rounded corners -->
+    <stroke android:width="4dp" android:color="#0000"/> <!-- Gray border -->
+    <padding android:left="18dp" android:top="18dp" android:right="18dp" android:bottom="18dp"/> <!-- Increased padding -->
+</shape>
