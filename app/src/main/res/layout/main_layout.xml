@@ -202,6 +202,15 @@
             android:padding="16dp"
             android:text="Button Testing Implementation Features"
             android:textSize="14sp" />
+        
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            style="@style/darkButton"
+            android:text="Upload to Azure Storage"
+            android:id="@+id/azure_upload_button"
+            android:visibility="visible"
+            />
 
         <Button
             android:layout_width="match_parent"

@@ -2,6 +2,9 @@ package com.atakmap.android.plugintemplate.plugin;
 
 import static com.atakmap.android.maps.MapView.getMapView;
 
+import com.dev.koshy.SimbaJosh.AzureStorageService;
+
+import android.widget.ProgressBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -365,6 +368,14 @@ public class PluginTemplate implements IPlugin {
                 }
             });
 
+            Button azureUploadButton = paneView.findViewById(R.id.azure_upload_button);
+            azureUploadButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showAzureUploadPopup(v);
+                }
+            });
+
             // Create the Pane
             templatePane = new PaneBuilder(paneView)
                     .setMetaValue(Pane.RELATIVE_LOCATION, Pane.Location.Default)
@@ -460,7 +471,65 @@ public class PluginTemplate implements IPlugin {
     }
 
 
+    private void showAzureUploadPopup(View anchorView) {
+        LayoutInflater inflater = (LayoutInflater) pluginContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_azure_upload, null);
 
+        int width = (int) (anchorView.getResources().getDisplayMetrics().widthPixels * 0.85);
+        int height = WindowManager.LayoutParams.WRAP_CONTENT;
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+
+        TextView selectedFileInfo = popupView.findViewById(R.id.selected_file_info);
+        Button uploadButton = popupView.findViewById(R.id.upload_to_azure_button);
+        ProgressBar progressBar = popupView.findViewById(R.id.upload_progress);
+
+        // Show the selected file information
+        File fileToUpload = null;
+        if (selectedImagePath != null) {
+            fileToUpload = new File(selectedImagePath);
+            selectedFileInfo.setText("Selected JPG: " + fileToUpload.getName());
+        } else if (selectedMsvPath != null) {
+            fileToUpload = new File(selectedMsvPath);
+            selectedFileInfo.setText("Selected MSV: " + fileToUpload.getName());
+        } else {
+            selectedFileInfo.setText("No file selected. Please select a JPG or MSV file first.");
+            uploadButton.setEnabled(false);
+        }
+
+        final File finalFileToUpload = fileToUpload;
+        uploadButton.setOnClickListener(v -> {
+            if (finalFileToUpload != null) {
+                // Show progress bar
+                progressBar.setVisibility(View.VISIBLE);
+                uploadButton.setEnabled(false);
+                
+                // Upload the file
+                AzureStorageService.uploadToAzure(finalFileToUpload, new AzureStorageService.UploadCallback() {
+                    @Override
+                    public void onSuccess(String message) {
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(pluginContext, message, Toast.LENGTH_LONG).show();
+                            popupWindow.dismiss();
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(String error) {
+                        new Handler(Looper.getMainLooper()).post(() -> {
+                            progressBar.setVisibility(View.GONE);
+                            uploadButton.setEnabled(true);
+                            Toast.makeText(pluginContext, error, Toast.LENGTH_LONG).show();
+                        });
+                    }
+                });
+            } else {
+                Toast.makeText(pluginContext, "No file selected", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        popupWindow.showAtLocation(anchorView.getRootView(), Gravity.CENTER, 0, 0);
+    }
 
 
     private void showBlockchainStoredHashesPopup(View anchorView) {
