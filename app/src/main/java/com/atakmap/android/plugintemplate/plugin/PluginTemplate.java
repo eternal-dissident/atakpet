@@ -503,15 +503,21 @@ public class PluginTemplate implements IPlugin {
                 progressBar.setVisibility(View.VISIBLE);
                 uploadButton.setEnabled(false);
                 
-                // Upload the file
+                // Generate the hash for the file
+                String fileHash = generateFileHash(finalFileToUpload.getAbsolutePath());
+                if (fileHash == null) {
+                    Toast.makeText(pluginContext, "Failed to generate file hash", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                    uploadButton.setEnabled(true);
+                    return;
+                }
+                
+                // First, upload to Azure
                 AzureStorageService.uploadToAzure(finalFileToUpload, new AzureStorageService.UploadCallback() {
                     @Override
-                    public void onSuccess(String message) {
-                        new Handler(Looper.getMainLooper()).post(() -> {
-                            progressBar.setVisibility(View.GONE);
-                            Toast.makeText(pluginContext, message, Toast.LENGTH_LONG).show();
-                            popupWindow.dismiss();
-                        });
+                    public void onSuccess(String azureMessage) {
+                        // After successful Azure upload, push to blockchain
+                        uploadToBlockchain(finalFileToUpload, fileHash, progressBar, uploadButton, popupWindow, azureMessage);
                     }
 
                     @Override
@@ -529,6 +535,35 @@ public class PluginTemplate implements IPlugin {
         });
 
         popupWindow.showAtLocation(anchorView.getRootView(), Gravity.CENTER, 0, 0);
+    }
+
+    // Helper method to upload to blockchain after Azure upload
+    private void uploadToBlockchain(File file, String fileHash, ProgressBar progressBar, 
+                                Button uploadButton, PopupWindow popupWindow, String azureMessage) {
+        // Convert timestamp to seconds (Unix timestamp)
+        long unixTimestamp = file.lastModified() / 1000;
+        
+        // Create a background thread for network operations
+        new Thread(() -> {
+            try {
+                String response = SimbaJoshInstance.addFilePost(file.getName(), fileHash, unixTimestamp);
+                Log.d("SimbaJosh", "Blockchain Response: " + response);
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    Toast.makeText(pluginContext, azureMessage + " and pushed to blockchain", Toast.LENGTH_LONG).show();
+                    // Hide progress and dismiss popup
+                    progressBar.setVisibility(View.GONE);
+                    popupWindow.dismiss();
+                });
+            } catch (Exception e) {
+                Log.e("SimbaJosh", "Blockchain upload failed", e);
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    progressBar.setVisibility(View.GONE);
+                    uploadButton.setEnabled(true);
+                    Toast.makeText(pluginContext, azureMessage + " but blockchain upload failed: " + 
+                            e.getMessage(), Toast.LENGTH_LONG).show();
+                });
+            }
+        }).start();
     }
 
 
