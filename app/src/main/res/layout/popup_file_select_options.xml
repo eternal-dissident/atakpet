@@ -9,37 +9,32 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="PET Upload"
+        android:text="Select File Type"
         android:textSize="20sp"
         android:textColor="#FFFFFF"
         android:gravity="center"
         android:paddingBottom="16dp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/selected_file_info"
+    <Button
+        android:id="@+id/select_jpg_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:text="Image/JPG File"
+        android:backgroundTint="#524646"
+        android:padding="10dp"
         android:textColor="#FFFFFF"
-        android:text="No file selected" />
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp" />
 
     <Button
-        android:id="@+id/upload_to_azure_button"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:backgroundTint="#0078D4"
-        android:padding="10dp"
-        android:text="Upload"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp" />
-
-    <ProgressBar
-        android:id="@+id/upload_progress"
+        android:id="@+id/select_msv_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        style="?android:attr/progressBarStyleHorizontal" 
-        android:indeterminate="true"/>
+        android:text="Mission Package/MSV File"
+        android:backgroundTint="#524646"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
 
 </LinearLayout>

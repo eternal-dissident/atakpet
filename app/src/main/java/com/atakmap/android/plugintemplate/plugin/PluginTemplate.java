@@ -188,191 +188,53 @@ public class PluginTemplate implements IPlugin {
             // Inflate the layout
             View paneView = PluginLayoutInflater.inflate(pluginContext, R.layout.main_layout, null);
 
-            Button uploadButton = paneView.findViewById(R.id.upload_photos_videos_button);
-            uploadButton.setOnClickListener(new View.OnClickListener() {
+            // Set up buttons for file transfer section
+            Button selectFileButton = paneView.findViewById(R.id.select_file_button);
+            selectFileButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(pluginContext, "Upload button clicked", Toast.LENGTH_SHORT).show();
-                    onUploadButtonClick();
+                    showFileSelectionOptions(v);
                 }
             });
 
-            Button watchDirectoryButton = paneView.findViewById(R.id.watch_directory_button);
-            watchDirectoryButton.setOnClickListener(new View.OnClickListener() {
+            Button viewFileButton = paneView.findViewById(R.id.view_file_button);
+            viewFileButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(pluginContext, "Watch Directory button clicked", Toast.LENGTH_SHORT).show();
-                    onWatchDirectoryButtonClick();
+                    viewSelectedFile(v);
                 }
             });
 
-            Button viewReceivedFilesButton = paneView.findViewById(R.id.view_recieved_files);
-            viewReceivedFilesButton.setOnClickListener(new View.OnClickListener() {
+            Button hashFileButton = paneView.findViewById(R.id.hash_file_button);
+            hashFileButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showBlockchainStoredHashesPopup(v);
+                    showFileHash(v);
                 }
             });
 
-
-            Button createMissionPackageButton = paneView.findViewById(R.id.create_mission_packages);
-            createMissionPackageButton.setOnClickListener(new View.OnClickListener() {
+            Button secureSendButton = paneView.findViewById(R.id.secure_send_button);
+            secureSendButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    createNewMissionPackage();
+                    sendFileSecurely(v);
                 }
             });
 
-            Button TakePhotoTAK = paneView.findViewById(R.id.take_photo_video_button);
-            TakePhotoTAK.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    TakePhotoFunc();
-                }
-            });
-
-            Button petSendTestButton = paneView.findViewById(R.id.PET_send_test);
-            petSendTestButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showSendOptionsPopup(v);
-                }
-            });
-
-            Button selectOptionButton = paneView.findViewById(R.id.select_option_button);
-            selectOptionButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(pluginContext, "Select Option button clicked", Toast.LENGTH_SHORT).show();
-                    showOptionsPopup(v);
-                }
-            });
-
-            Button viewFilesTestButton = paneView.findViewById(R.id.view_files_test);
-            viewFilesTestButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showFilesPopup(v);
-                }
-            });
-
-            Button viewFilesTestButtonDP = paneView.findViewById(R.id.view_files_dp_test);
-            viewFilesTestButtonDP.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showDPFilesPopup(v);
-                }
-            });
-
-            Button viewFilesTestButtonDynamic = paneView.findViewById(R.id.view_files_configure_test);
-            viewFilesTestButtonDynamic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showDynamicFilesPopup(v);
-                }
-            });
-
-            Button filePickerButton = paneView.findViewById(R.id.file_picker_button);
-            filePickerButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    PromptForJPGFileSelection();
-                }
-            });
-
-            Button filePickerButtonMSV = paneView.findViewById(R.id.file_msv_picker_button);
-            filePickerButtonMSV.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    PromptForMSVFileSelection();
-                }
-            });
-
-            Button dialogTestingButton = paneView.findViewById(R.id.dialog_testing_button);
-            dialogTestingButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(pluginContext, "Fragment Testing Option clicked", Toast.LENGTH_SHORT).show();
-                    showTestingPopup(v);
-                }
-            });
-
-            Button JPGSecureMain = paneView.findViewById(R.id.tak_server_send);
-            JPGSecureMain.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(pluginContext, "Send JPG Secure File Transfer Clicked", Toast.LENGTH_SHORT).show();
-                    sendJpgFileSecurely(v);
-                }
-            });
-
-            Button selectedPicButton = paneView.findViewById(R.id.selected_pic_button);
-            selectedPicButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showSelectedImagePopup(v);
-                }
-            });
-
-            Button hashJpgButton = paneView.findViewById(R.id.Hashed_Value_JPG);
-            hashJpgButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (selectedImagePath != null) {
-                        String fileHash = generateFileHash(selectedImagePath);
-                        if (fileHash != null) {
-                            showHashPopup(v, fileHash);
-                        } else {
-                            Toast.makeText(pluginContext, "Failed to generate hash", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(pluginContext, "No file selected", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-
-            Button selectedMsvButton = paneView.findViewById(R.id.selected_msv_button);
-            selectedMsvButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showSelectedMsvPopup(v);
-                }
-            });
-
-            Button sendMsvSecurelyButton = paneView.findViewById(R.id.securly_send_file_msv);
-            sendMsvSecurelyButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (selectedMsvPath != null) {
-                        sendMsvFileSecurely();
-                    } else {
-                        Toast.makeText(pluginContext, "No mission package selected", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-
-            Button hashMsvButton = paneView.findViewById(R.id.Hashed_Value_MSV);
-            hashMsvButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (selectedMsvPath != null) {
-                        String fileHash = generateFileHash(selectedMsvPath);
-                        if (fileHash != null) {
-                            showHashPopup(v, fileHash); // Method to show the hash value in a popup
-                        } else {
-                            Toast.makeText(pluginContext, "Failed to generate hash", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(pluginContext, "No file selected", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-
-            Button azureUploadButton = paneView.findViewById(R.id.azure_upload_button);
-            azureUploadButton.setOnClickListener(new View.OnClickListener() {
+            // Set up buttons for PET section
+            Button createEvidenceButton = paneView.findViewById(R.id.azure_upload_button);
+            createEvidenceButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     showAzureUploadPopup(v);
+                }
+            });
+
+            Button petViewerButton = paneView.findViewById(R.id.view_recieved_files);
+            petViewerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showBlockchainStoredHashesPopup(v);
                 }
             });
 
@@ -386,6 +248,75 @@ public class PluginTemplate implements IPlugin {
 
         if (!uiService.isPaneVisible(templatePane)) {
             uiService.showPane(templatePane, null);
+        }
+    }
+
+    // Show file selection options (JPG or MSV)
+    private void showFileSelectionOptions(View anchorView) {
+        LayoutInflater inflater = (LayoutInflater) pluginContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_file_select_options, null);
+
+        int width = WindowManager.LayoutParams.WRAP_CONTENT;
+        int height = WindowManager.LayoutParams.WRAP_CONTENT;
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, true);
+
+        Button jpgButton = popupView.findViewById(R.id.select_jpg_button);
+        jpgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                PromptForJPGFileSelection();
+            }
+        });
+
+        Button msvButton = popupView.findViewById(R.id.select_msv_button);
+        msvButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+                PromptForMSVFileSelection();
+            }
+        });
+
+        popupWindow.showAtLocation(anchorView.getRootView(), Gravity.CENTER, 0, 0);
+    }
+
+    // View the selected file (JPG or MSV)
+    private void viewSelectedFile(View anchorView) {
+        if (selectedImagePath != null) {
+            showSelectedImagePopup(anchorView);
+        } else if (selectedMsvPath != null) {
+            showSelectedMsvPopup(anchorView);
+        } else {
+            Toast.makeText(pluginContext, "No file selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Show the hash of the selected file
+    private void showFileHash(View anchorView) {
+        String filePath = selectedImagePath != null ? selectedImagePath : selectedMsvPath;
+        if (filePath != null) {
+            String fileHash = generateFileHash(filePath);
+            if (fileHash != null) {
+                showHashPopup(anchorView, fileHash);
+            } else {
+                Toast.makeText(pluginContext, "Failed to generate hash", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(pluginContext, "No file selected", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Send the selected file securely
+    private void sendFileSecurely(View anchorView) {
+        if (selectedImagePath != null) {
+            File file = new File(selectedImagePath);
+            new SendDialog.Builder(getMapView()).addFile(file).show();
+        } else if (selectedMsvPath != null) {
+            File file = new File(selectedMsvPath);
+            new SendDialog.Builder(getMapView()).addFile(file).show();
+        } else {
+            Toast.makeText(pluginContext, "No file selected", Toast.LENGTH_SHORT).show();
         }
     }
 
